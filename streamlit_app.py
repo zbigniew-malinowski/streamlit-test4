@@ -1,7 +1,5 @@
 """Streamlit app displaying a BTC/USD price chart."""
 
-from datetime import date, timedelta
-
 import pandas as pd
 import requests
 import streamlit as st
@@ -9,10 +7,9 @@ import streamlit as st
 
 @st.cache_data(show_spinner=False)
 def load_data() -> pd.DataFrame:
-
-    """Fetch last month of BTC/USD prices from the CoinGecko API."""
+    """Fetch the last week of BTC/USD prices from the CoinGecko API."""
     url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart"
-    params = {"vs_currency": "usd", "days": "30", "interval": "daily"}
+    params = {"vs_currency": "usd", "days": "7", "interval": "hourly"}
 
     response = requests.get(url, params=params, timeout=10)
     response.raise_for_status()
