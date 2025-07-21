@@ -1,6 +1,6 @@
 # streamlit-test4
 
-This example Streamlit project now displays a sample BTC/USD price chart.
+This example Streamlit project fetches the last month of BTC/USD prices from the CoinDesk API and displays them as a chart.
 
 Built with ❤️ by [zbigniew-malinowski](https://github.com/zbigniew-malinowski)
 
