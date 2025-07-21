@@ -2,6 +2,7 @@
 
 This example Streamlit project fetches the last week of BTC/USD prices from the CoinGecko API and displays them as an hourly chart. The API automatically returns hourly data for this time range, so no special parameters are needed.
 
+
 Built with ❤️ by [zbigniew-malinowski](https://github.com/zbigniew-malinowski)
 
 ## What's this?

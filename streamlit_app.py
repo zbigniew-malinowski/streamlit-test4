@@ -14,6 +14,7 @@ def load_data() -> pd.DataFrame:
     # interval.
     params = {"vs_currency": "usd", "days": "7"}
 
+
     response = requests.get(url, params=params, timeout=10)
     response.raise_for_status()
     prices = response.json()["prices"]
