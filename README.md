@@ -1,6 +1,6 @@
 # streamlit-test4
 
-TODO
+This example Streamlit project now displays a sample BTC/USD price chart.
 
 Built with ❤️ by [zbigniew-malinowski](https://github.com/zbigniew-malinowski)
 
