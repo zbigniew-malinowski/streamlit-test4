@@ -9,7 +9,11 @@ import streamlit as st
 def load_data() -> pd.DataFrame:
     """Fetch the last week of BTC/USD prices from the CoinGecko API."""
     url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart"
-    params = {"vs_currency": "usd", "days": "7", "interval": "hourly"}
+    # CoinGecko returns hourly prices automatically for date ranges under
+    # 90 days, so we simply request the last 7 days without specifying an
+    # interval.
+    params = {"vs_currency": "usd", "days": "7"}
+
 
     response = requests.get(url, params=params, timeout=10)
     response.raise_for_status()
