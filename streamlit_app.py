@@ -9,19 +9,18 @@ import streamlit as st
 
 @st.cache_data(show_spinner=False)
 def load_data() -> pd.DataFrame:
-    """Fetch last month of BTC/USD prices from the CoinDesk API."""
-    end_date = date.today()
-    start_date = end_date - timedelta(days=30)
-    url = "https://api.coindesk.com/v1/bpi/historical/close.json"
-    params = {"start": start_date.strftime("%Y-%m-%d"), "end": end_date.strftime("%Y-%m-%d")}
+
+    """Fetch last month of BTC/USD prices from the CoinGecko API."""
+    url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart"
+    params = {"vs_currency": "usd", "days": "30", "interval": "daily"}
 
     response = requests.get(url, params=params, timeout=10)
     response.raise_for_status()
-    data = response.json()["bpi"]
+    prices = response.json()["prices"]
 
-    df = pd.DataFrame(list(data.items()), columns=["Date", "Price"])
-    df["Date"] = pd.to_datetime(df["Date"])
-    df = df.set_index("Date").sort_index()
+    df = pd.DataFrame(prices, columns=["Timestamp", "Price"])
+    df["Date"] = pd.to_datetime(df["Timestamp"], unit="ms")
+    df = df.drop(columns=["Timestamp"]).set_index("Date").sort_index()
     return df
 
 
